@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    ul,ol{
+        list-style: none;
+    }
+    #main{
+        width: 479px;
+        height: 591px;
+        margin: 0 auto;
+        padding: 30px;
+        box-sizing: border-box;
+        color: #fff;
+        position: relative;
+    }
+    #main li{
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        justify-content: space-evenly;
+    }
+    #main li .info{
+        color: #fff;
+    }
+    button{
+        width: 52px;
+        height: 44px;
+        border: none;
+    }
+    .num{
+        width: 44px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        background: #fff;
+        border-radius: 10px;
+        color:#333;
+    }
+    .shopInfo{
+        position: absolute;
+        bottom: 20px;
+        left: 30px;
+    }
+    .shopInfo p{
+        line-height: 30px;
+    }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div id="main">
+       <ul>
+          <li>
+               <button class="add" flag="1"></button>
+                <b class="num">0</b>
+                <button class="sub" flag="0"></button>
+                <span class="info">
+                       单价：<span class="itemPrice">1</span>元 小计：
+                       <b class="xjMoney">0</b>元 
+                </span>
+          </li>
+          <li>
+            <button class="add" flag="1"></button>
+             <b class="num">0</b>
+             <button class="sub" flag="0"></button>
+             <span class="info">
+                    单价：<span class="itemPrice">2</span>元 小计：
+                    <b class="xjMoney">0</b>元 
+             </span>
+       </li>
+       <li>
+        <button class="add" flag="1"></button>
+         <b class="num">0</b>
+         <button class="sub" flag="0"></button>
+         <span class="info">
+                单价：<span class="itemPrice">3</span>元 小计：
+                <b class="xjMoney">0</b>元 
+         </span>
+   </li>
+
+
+
+
+       </ul>
+       <div class="shopInfo">
+             <p>商品共 <span class="totalNum"> 0            </span></p>
+             <p>共花了 <span class="totalMoney">0 </span></p>
+             <p id="changeBox">其中最贵的商品单价是 <span class="specileMoney">0</span></p> 
+       </div>
+
+
+
+
+
+    </div>
+</body>
+</html>

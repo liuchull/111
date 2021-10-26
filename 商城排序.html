@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+  *{
+      margin: 0;
+      padding: 0;
+  }
+   ul{
+       list-style: none;
+   }
+   .clearfix::after{
+      content:"";
+      height: 0;
+      font-size: 0;
+      clear: both; 
+      visibility: hidden;
+      display: block;
+   }
+  body,html{
+      background:lavender;
+  }
+  a{
+      text-decoration: none;
+  }
+  .main{
+      width: 1200px;
+      height: 600px;
+      margin: 0 auto;
+      color: #666;
+  }
+  .topBar{
+      height: 50px;
+      line-height: 50px;
+      background: #fff;
+      font-size: 18px;
+      padding-left: 30px;
+      width: 1185px;
+      box-sizing: border-box;
+  }
+  .topBar a{
+      position: relative;
+      margin-left: 30px;
+      padding-right: 5px;
+  }
+  .topBar .up,.topBar .down{
+      border: 5px solid #333;
+      position: absolute;
+      right: -8px;
+  }
+  .topBar .up{
+      border-color: transparent transparent #333 transparent;
+      top: 0px;
+  }
+  .topBar .up.current{
+      border-color: transparent transparent red transparent;
+  }
+  .topBar .down{
+      border-color: #333 transparent transparent transparent;
+  }
+  .topBar .down.current{
+      border-color: red transparent transparent transparent;
+  }
+  .lists{
+      width: 100%;
+      margin-top: 20px;
+  }
+  .lists li{
+      width: 225px;
+      padding: 0 20px;
+      box-sizing: border-box;
+      background: #fff;
+      margin: 0 15px 15px 0;
+      float: left;
+      padding-bottom: 10px;
+    
+  }
+  .lists>li>.title{
+      height: 35px;
+      line-height: 35px;
+      font-weight: normal;
+  } 
+  .lists .price{
+      float:left;
+  }
+  .lists .hot{
+      float: right;
+  }
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="topBar">
+             <span>排序</span>
+            <a href="javascript:;">上架时间
+                <i class="up"></i>
+                <i class="down"></i>
+            </a>
+             <a href="javascript:;">热度
+                <i class="up"></i>
+                <i class="down"></i>
+             </a>
+             <a href="javascript:;">价格
+                <i class="up"></i>
+                <i class="down"></i>
+             </a>
+        </div>
+     <ul class="lists clearfix">
+          <li>
+              <img src="" alt="">
+              <h5 class="title">huawei</h5>
+              <p class="data">2017-03-15</p>
+              <p class="clearfix"><span class="price">196</span> <span class="hot">198</span></p>
+          </li>
+          <li>
+            <img src="" alt="">
+            <h5 class="title">huawei</h5>
+            <p class="data">2017-03-15</p>
+            <p class="clearfix"><span class="price">196</span> <span class="hot">198</span></p>
+        </li>
+        <li>
+            <img src="" alt="">
+            <h5 class="title">huawei</h5>
+            <p class="data">2017-03-15</p>
+            <p class="clearfix"><span class="price">196</span> <span class="hot">198</span></p>
+        </li>
+        <li>
+            <img src="" alt="">
+            <h5 class="title">huawei</h5>
+            <p class="data">2017-03-15</p>
+            <p class="clearfix"><span class="price">196</span> <span class="hot">198</span></p>
+        </li>
+        <li>
+            <img src="" alt="">
+            <h5 class="title">huawei</h5>
+            <p class="data">2017-03-15</p>
+            <p class="clearfix"><span class="price">196</span> <span class="hot">198</span></p>
+        </li>
+        <li>
+            <img src="" alt="">
+            <h5 class="title">huawei</h5>
+            <p class="data">2017-03-15</p>
+            <p class="clearfix"><span class="price">196</span> <span class="hot">198</span></p>
+        </li>
+        <li>
+            <img src="" alt="">
+            <h5 class="title">huawei</h5>
+            <p class="data">2017-03-15</p>
+            <p class="clearfix"><span class="price">196</span> <span class="hot">198</span></p>
+        </li>
+        <li>
+            <img src="" alt="">
+            <h5 class="title">huawei</h5>
+            <p class="data">2017-03-15</p>
+            <p class="clearfix"><span class="price">196</span> <span class="hot">198</span></p>
+        </li>
+
+
+
+
+     </ul>
+
+
+
+
+
+
+
+    </div>
+</body>
+</html>

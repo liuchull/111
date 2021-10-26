@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+       
+    var list = document.getElementById("list");
+    var lis = document.querySelectorAll("li");
+    var fs = document.createDocumentFragment();
+       for(var i=0;i<lis.length;i++){
+             lis=[].slice.call(lis).sort(function(a,b){
+                 return b.innerHTML - a.innerHTML
+             });
+             fs.appendChild(lis[i]);
+       }
+     list.appendChild(fs);
+    // var numbers = [2,11,4,3,5]
+    //  numbers.sort(function(a,b){
+    //      return b-a
+    //  });
+    //  console.log(numbers)
+    
+    </script>
+</body>
+</html>

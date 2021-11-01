@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      *{
+          margin: 0;
+          padding: 0;
+      } 
+      ul,ol{
+          list-style: none;
+      }
+      body{
+         background-color: aquamarine;
+      }
+      .main{
+          width: 479px;
+          height: 527px;
+          border: 2px solid #444;
+          margin: 0 auto;
+          padding: 30px;
+          border-radius: 5px;
+          position: relative;
+          color: rgb(153, 35, 35);
+      }
+      .main li{
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          margin-bottom: 20px;
+      }
+      .main .info{
+          color: blue;
+      }
+      button{
+          width: 40px;
+          height: 47px;
+          line-height: 47px;
+          text-align: center;
+          border: none;
+      }
+      .num{
+          width: 40px;
+          height: 47px;
+          line-height: 47px;
+          text-align: center;
+          border-radius: 10px;
+          background-color: black;
+      }
+      .infoShop{
+          position: absolute;
+          bottom: 80px;
+          left: 60px;
+      }
+      .infoShop p{
+          line-height: 30px;          
+          font-size: 25px;
+          color: blue;
+      }
+      .infoShop b{
+          color: black;
+      } 
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="main">
+             <ul>
+                 <li>
+                     <button class="add" flag="1"                     ></button>
+                     <b class="num">0</b>
+                     <button class="sub" flag="0"></button>
+                     <span class="info">
+                        单价：<span class="itemPrice">1</span> 元
+                        小计：<span class="xjMoney">0</span>元
+                     </span>
+                 </li>
+                 <li>
+                    <button class="add" flag="1"> </button>
+                    <b class="num">0</b>
+                    <button class="sub" flag="0"></button>
+                    <span class="info">
+                       单价：<span class="itemPrice">2</span> 元
+                       小计：<span class="xjMoney">0</span>元
+                    </span>
+                </li>
+                <li>
+                    <button class="add" flag="1"></button>
+                    <b class="num">0</b>
+                    <button class="sub" flag="0"></button>
+                    <span class="info">
+                       单价：<span class="itemPrice">3</span> 元
+                       小计：<span class="xjMoney">0</span>元
+                    </span>
+                </li>
+             </ul>
+            <div class="infoShop">
+                <p>商品共<b class="totalNum">0</b>件</p>
+                <p>商品共花了<b class="totalMoney">0</b>元</p>
+                <p>其中商品最贵的单价是<b class="specileMoney">0</b>元</p>
+            </div> 
+    </div>
+    <script>       
+      var buttons = document.querySelectorAll("button");
+      var totalNumAry = document.querySelector(".infoShop .totalNum");
+      var totalMoneyAry = document.querySelector(".infoShop .totalMoney");
+      var numArys = document.querySelectorAll(".main .num");
+      var xjMoneys = document.querySelectorAll(".main .xjMoney");
+      var specileMoneyAry = document.querySelector(".infoShop .specileMoney");
+      var lis  = document.querySelectorAll("li"); 
+      for(var i=0;i<buttons.length;i++){
+          buttons[i].onclick = function(){
+            var parentEle = this.parentNode;
+            var flag = this.getAttribute("flag") ;
+            var numAry = parentEle.querySelector(".num");
+            var oldNum = Number(numAry.innerText);
+            var nowNum = 0;
+            var itemPrice = parentEle.querySelector(".itemPrice");
+            var xjMoney = parentEle.querySelector(".xjMoney");
+            var totalNum = 0;
+            var totalMoney = 0;
+            if(flag==1){
+              nowNum = oldNum+1
+            }else{
+                if(oldNum-1<0){
+                   nowNum=0;
+                   return
+                }
+                nowNum = oldNum-1
+            }
+            numAry.innerText = nowNum;
+            xjMoney .innerText = numAry.innerText * itemPrice.innerText;
+        //    for(var i=0;i<numAry.length;i++){
+        //       totalNum+=Number(numAry[i].innerText) 
+        //    } 
+        //    totalNumAry.innerText = totalNum;
+        for(var i=0;i<numArys.length;i++){
+                totalNum+=Number(numArys[i].innerText)   
+             }
+             totalNumAry.innerText = totalNum;
+            for(var i=0;i<xjMoneys.length;i++){
+               totalMoney+=Number(xjMoneys[i].innerText);
+            }
+            totalMoneyAry.innerText = totalMoney;
+            var ary =[];
+            var maxp = 0;
+          for(var i=0;i<lis.length;i++){
+             var item = lis[i];
+             if(item.querySelector(".num").innerText>0){
+                  var itemp = item.querySelector(".itemPrice").innerText;
+                  ary.push(itemp);     
+             }
+          }
+           if(ary.length>0){
+               maxp = ary.sort(function(a,b){
+                     return a-b
+               })[ary.length-1]
+           }
+           specileMoneyAry.innerText = maxp
+          } 
+
+      }
+
+
+
+
+
+    </script>
+</body>
+</html> 

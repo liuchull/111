@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类数组转换为数组</title>
+</head>
+<body>
+    <script>
+        // function toArray(likeArray){
+        //     var ary = [];
+        //     for(var i=0;i<likeArray.length;i++){
+        //       ary.push(likeArray[i])
+        //     } 
+        //     return ary   
+        // }
+        // function fn(){
+        // var res = toArray(arguments)
+        // return res 
+        // }
+        // fn(1,2,3)
+    // function max(res){
+    //    for(var i=0;i<res.length;i++){
+    //        for(var j=i+1;j<res.length;j++){
+    //            if(res[i]>res[j]){
+    //                res.splice(j,1)
+    //                j--
+    //            }else if(res[i]<res[j]){
+    //                res.splice(i,1)
+    //                j--
+    //            }else{
+    //             res.splice(i,1)
+    //                j--
+    //            }
+    //        }
+    //    }
+    //    return res
+    // } 
+     
+     var res2 = [1,2,3,4,5];
+    
+     function maxp(res){
+        for(var i=0;i<res.length-1;i++){
+           if(res[i]>res[i+1]){
+             var temp = res[i];
+             res[i] = res[i+1];
+             res[i+1] = temp;}
+           var res3 = res[length-1];
+             return res3
+
+     }
+    }
+     maxp(res2)
+
+
+
+    </script>
+</body>
+</html>

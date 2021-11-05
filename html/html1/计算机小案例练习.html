@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算机小案例再次练习</title>
+    <style>
+      *{
+          margin: 0;
+          padding: 0;
+      }
+       ul,ol{
+           list-style: none;
+       } 
+       body{
+           background-color: chartreuse;
+       }
+       .main{
+           width: 479px;
+           height: 501px;
+           margin: 0 auto;
+           border: 2px solid #444;
+           border-radius: 10px;
+           position: relative;
+           padding: 30px;           
+       }
+       .main li{
+           display: flex;
+           justify-content: space-evenly;
+           align-items: center;
+           margin-bottom: 20px;
+       }
+       .main button{
+           width: 47px;
+           height: 50px;
+           border: none;
+       }
+       .main .num{
+           width: 47px;
+           height: 50px;
+           line-height: 50px;
+           text-align: center;
+           color: crimson;
+           border: 1px solid #444;
+       }
+       .main span{
+           color: blue;
+       }
+       .shopInfo{
+           position: absolute;
+           left: 60px;
+           bottom: 50px;
+       }
+       .shopInfo p{
+           line-height: 30px;
+           font-size: 25px;
+           color: rgb(225, 0, 255);
+       }
+       .shopInfo b{
+           color: deeppink;
+       }
+
+
+    </style>
+</head>
+<body>
+    <div class="main">
+            <ul>
+                <li>
+                <button class="add" liuchu="1"></button>
+                <b class="num">0</b>
+                <button class="sub"></button>
+                <span>
+                    单价：<b class="itemPrice">1</b>
+                    小计：<b class="xjMoney">0</b>
+                </span>
+               </li>
+               <li>
+                <button class="add" liuchu="1"></button>
+                <b class="num">0</b>
+                <button class="sub" liuchu="0"></button>
+                <span>
+                    单价：<b class="itemPrice">2</b>
+                    小计：<b class="xjMoney">0</b>
+                </span>
+               </li>
+               <li>
+                <button class="add" liuchu="1"></button>
+                <b class="num">0</b>
+                <button class="sub" liuchu="0"></button>
+                <span>
+                    单价：<b class="itemPrice">3</b>
+                    小计：<b class="xjMoney">0</b>
+                </span>
+               </li>
+            </ul>
+           <div class="shopInfo">
+              <p>商品共有<b class="totalNum">0</b>件</p>
+              <p>商品共花了<b class="totalMoney">0</b>元</p>
+              <p>其中最贵的商品单价是<b class="specileMoney">0</b>元</p>
+           </div> 
+    </div>
+    <script>
+         var buttons = document.querySelectorAll("button");
+         var numArys = document.querySelectorAll(".main .num")
+         var totalNumAry = document.querySelector(".totalNum");
+         var totalMoneyAry = document.querySelector(".totalMoney");
+         var xjMoneyAry = document.querySelectorAll(".xjMoney");
+         var lis = document.querySelectorAll(".main li");
+         var specileMoneyAry = document.querySelector(".specileMoney")
+         function del(num){
+            if(num<10){
+               return "0"+num
+            }else{
+                return num
+            }
+         }
+         for(var i=0;i<buttons.length;i++){
+           buttons[i].onclick = function(){
+               var liuchu = this.getAttribute("liuchu");
+               var parentEle = this.parentNode;
+               var numAry = parentEle.querySelector(".num");
+               var oldNum = Number(numAry.innerText);
+               var nowNum = 0;
+               var xjMoney = parentEle.querySelector(".xjMoney");
+               var itemPrice = parentEle.querySelector(".itemPrice");
+               var totalMoney = 0;
+               var totalNum = 0; 
+               if(liuchu == 1){
+                  nowNum = oldNum+1
+               }else{
+                   if(oldNum-1<0){
+                     nowNum = 0;
+                     return
+                   }
+                   nowNum = oldNum-1 
+               }
+              numAry.innerText = del(nowNum);
+              xjMoney.innerText = del(nowNum * itemPrice.innerText); 
+              for(var i=0;i<numArys.length;i++){
+                 totalNum +=Number(numArys[i].innerText);
+              }
+              totalNumAry.innerText = del(totalNum);
+              for(var i=0;i<xjMoneyAry.length;i++){
+                 totalMoney+=Number(xjMoneyAry[i].innerText);
+              }
+              totalMoneyAry.innerText = del(totalMoney);
+              var ary = [];
+              var maxp = 0;
+              for(var i=0;i<lis.length;i++){
+                var item = lis[i];
+                if(item.querySelector(".num").innerText>0){
+                   var itemp = item.querySelector(".itemPrice").innerText;
+                   ary.push(itemp);
+                }
+              }
+              if(ary.length>0){
+                 maxp = ary.sort(function(a,b){
+                   return a-b
+                 })[ary.length-1]
+              }
+            specileMoneyAry.innerText = del(maxp);
+           }
+         }
+
+
+
+
+
+
+    </script>
+</body>
+</html>

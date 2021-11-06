@@ -9,8 +9,52 @@ a{
     text-decoration: none;
 }
 body{
-    color: lavender;
+    background: lavender;
 }
 .main{
     width: 1200px;
+    margin: 0 auto;      
+}
+.main .topBar{
+    height: 50px;
+    background: #fff;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    padding-left: 20px; 
+    box-sizing: border-box;
+}
+.main .sortBtn{
+    display: flex;
+    margin: 0 10px;
+    align-items: center;
+    color: blue;
+}
+.sortBtn:hover>span{
+    color: red;
+}
+.list li{
+    width: 225px;
+    background: #fff;
+  
+   margin-top: 20px;
+    padding: 20px;   box-sizing: border-box;
+    font-size: 18px;
+    margin-right: 15px;
+}
+.list li img{
+    width: 140px;
+    display: block;
+   margin:0 auto;
+}
+.list li p{
+    line-height: 30px;
+}
+.list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.list li .num{
+    display: flex;
+    justify-content: space-between;
 }

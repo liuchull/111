@@ -102,6 +102,7 @@
            </div> 
     </div>
     <script>
+         debugger
          var buttons = document.querySelectorAll("button");
          var numArys = document.querySelectorAll(".main .num")
          var totalNumAry = document.querySelector(".totalNum");
@@ -109,6 +110,7 @@
          var xjMoneyAry = document.querySelectorAll(".xjMoney");
          var lis = document.querySelectorAll(".main li");
          var specileMoneyAry = document.querySelector(".specileMoney")
+         debugger
          function del(num){
             if(num<10){
                return "0"+num
@@ -118,6 +120,7 @@
          }
          for(var i=0;i<buttons.length;i++){
            buttons[i].onclick = function(){
+               
                var liuchu = this.getAttribute("liuchu");
                var parentEle = this.parentNode;
                var numAry = parentEle.querySelector(".num");
@@ -164,7 +167,7 @@
            }
          }
 
-
+        
 
 
 

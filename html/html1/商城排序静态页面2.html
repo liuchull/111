@@ -28,8 +28,8 @@
             </a>
            
         </div>
-        <ul class="list">
-            <li>
+        <ul class="list" id="list">
+            <!-- <li>
                 <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
                 <p>华为全网通黑色版</p>
                 <p>2021.11.5</p>
@@ -119,19 +119,34 @@
                     <span>99</span>
                 </p>
             </li>
-           
+            -->
 
         </ul>
    </div> 
    <script>
+       var list =document.getElementById("list")
+       var data = null;
+       var str = "";
       var xhr = new XMLHttpRequest();
-      xhr.open("get","css./data.json");
+      xhr.open("get","data/data.json");
       xhr.onreadystatechange = function(){
           if(xhr.readyState==4&&/^2\d{2}/.test(xhr.status)){
-               console.log(xhr.responseText);
+               data = JSON.parse(xhr.responseText)
+               bindHTML(data);
           }
       }
       xhr.send();
+      function bindHTML(data){
+          data.forEach(function(item,index){
+             str+=`<img src="${item.img}" alt="">
+                <p>${item.title}</p>
+                <p>${item.price}</p>
+                <p class="num">
+                    ${item.hot}
+                </p>`
+          })
+      }
+      list.innerHTML = str
 
     //   http://127.0.0.1:5500/html/html1/html/data.json
     

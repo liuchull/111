@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商城静态页面练习3</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: lavender;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .main{
+            width: 1200px;
+            margin: 0 auto;
+        }
+        .main .topBar{
+            width: 1200px;
+            height: 50px;
+            background: #fff;
+            margin: 0 auto;
+            line-height: 50px;
+            padding-left: 30px;
+            
+        }
+        .main .choose{
+            color: blue;
+        }
+        .main .sortBtn{
+            margin: 0 10px;
+        }
+        .main .choose:hover{
+            color: red;
+        }
+        .list{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .list li{
+            width: 225px;
+            margin-top: 20px;
+            padding: 30px;
+            background: #fff;
+            box-sizing: border-box;
+            margin-right: 15px; 
+
+        }
+        .list li img{
+            width: 140px;
+            display: block;
+            margin: 0 auto;
+        }
+        .list li p{
+            line-height: 30px;
+            font-size: 18px;
+        }
+        .list li>span{
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+            <div class="topBar">
+                <span>排序</span>
+                <a class="sortBtn" href="javascript:;" sortflag = "time">
+                    <span class="choose">
+                        上架时间
+                    </span>
+                </a>   
+                <a class="sortBtn" href="javascript:;" sortflag="hot">
+                    <span class="choose">
+                        热度
+                    </span>
+                </a>
+                <a class="sortBtn" href="javascript:;" sortflag="price">
+                    <span class="choose">
+                        价格
+                    </span>
+                </a>            
+            </div>
+            <ul class="list" id="list">
+                    <!-- <li>
+                        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                        <p class="title">华为全网通黑色版</p>
+                        <p class="time">2021.11.8</p>
+                          <span>
+                              <b class="money">9999</b>
+                              <b class="hot">99</b>
+                          </span>
+                    </li>
+                    <li>
+                        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                        <p class="title">华为全网通黑色版</p>
+                        <p class="time">2021.11.8</p>
+                          <span>
+                              <b class="money">9999</b>
+                              <b class="hot">99</b>
+                          </span>
+                    </li>
+                    <li>
+                        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                        <p class="title">华为全网通黑色版</p>
+                        <p class="time">2021.11.8</p>
+                          <span>
+                              <b class="money">9999</b>
+                              <b class="hot">99</b>
+                          </span>
+                    </li>
+                    <li>
+                        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                        <p class="title">华为全网通黑色版</p>
+                        <p class="time">2021.11.8</p>
+                          <span>
+                              <b class="money">9999</b>
+                              <b class="hot">99</b>
+                          </span>
+                    </li>
+                     <li>
+                        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                        <p class="title">华为全网通黑色版</p>
+                        <p class="time">2021.11.8</p>
+                          <span>
+                              <b class="money">9999</b>
+                              <b class="hot">99</b>
+                          </span>
+                    </li>
+                    <li>
+                        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                        <p class="title">华为全网通黑色版</p>
+                        <p class="time">2021.11.8</p>
+                          <span>
+                              <b class="money">9999</b>
+                              <b class="hot">99</b>
+                          </span>
+                    </li>
+                    <li>
+                        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                        <p class="title">华为全网通黑色版</p>
+                        <p class="time">2021.11.8</p>
+                          <span>
+                              <b class="money">9999</b>
+                              <b class="hot">99</b>
+                          </span>
+                    </li>
+                    <li>
+                        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                        <p class="title">华为全网通黑色版</p>
+                        <p class="time">2021.11.8</p>
+                          <span>
+                              <b class="money">9999</b>
+                              <b class="hot">99</b>
+                          </span>
+                    </li>
+                    <li>
+                        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                        <p class="title">华为全网通黑色版</p>
+                        <p class="time">2021.11.8</p>
+                          <span>
+                              <b class="money">9999</b>
+                              <b class="hot">99</b>
+                          </span>
+                    </li>
+                    <li>
+                        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                        <p class="title">华为全网通黑色版</p>
+                        <p class="time">2021.11.8</p>
+                          <span>
+                              <b class="money">9999</b>
+                              <b class="hot">99</b>
+                          </span>
+                    </li> -->
+            </ul>
+    </div>
+    <script>
+      var str = "";
+      var data = null;
+      var list = document.getElementById("list");
+      var sortBtns = document.querySelectorAll(".sortBtn")
+      var lis;
+     var xhr = new XMLHttpRequest();
+     xhr.open("get","data/data.json");
+     xhr.onreadystatechange = function(){
+         if(xhr.readyState==4&&/^2\d{2}/.test(xhr.status)){
+             data = JSON.parse(xhr.responseText);
+             bindHTML(data);
+             
+             
+         }
+     }
+     xhr.send();
+     function bindHTML(data){
+           data.forEach(function(item,index){
+               str+=`<li time="${item.time}" price="${item.price}" hot="${item.hot}" >
+                        <img src="${item.img}" alt="">
+                        <p class="title">${item.title}</p>
+                        <p class="time">${item.time}</p>
+                          <span>
+                              <b class="money">${item.price}</b>
+                              <b class="hot">${item.hot}</b>
+                          </span>
+                    </li>`
+           })
+          
+             list.innerHTML = str;
+            //  var lis =[].slice.call(document.querySelectorAll("li")); 
+           var lis = [].slice.call(document.querySelectorAll(".main li"))
+           for(var i=0;i<sortBtns.length;i++){
+               
+            sortBtns[i].onclick = function(){
+                
+            var sortflag = this.getAttribute("sortflag");
+            
+           if(sortflag == "time"){
+                lis.sort(function(a,b){
+             
+                return  a.getAttribute("time").replace(/./g,"")-b.getAttribute("time").replace(/./g,"")
+               
+                })  
+           }
+           for(var i=0;i<lis.length;i++){
+            list.appendChild(lis[i])
+         }
+        }
+        
+     }
+     }
+    
+
+
+
+
+    </script>
+</body>
+</html>

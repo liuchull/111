@@ -126,7 +126,7 @@
    <script>
        var list =document.getElementById("list")
        var data = null;
-       var str = "";
+       var str = ``;
       var xhr = new XMLHttpRequest();
       xhr.open("get","data/data.json");
       xhr.onreadystatechange = function(){
@@ -138,15 +138,19 @@
       xhr.send();
       function bindHTML(data){
           data.forEach(function(item,index){
-             str+=`<img src="${item.img}" alt="">
+             str+=`<li>
+                <img src="${item.img}" alt="">
                 <p>${item.title}</p>
-                <p>${item.price}</p>
+                <p>${item.time}</p>
                 <p class="num">
-                    ${item.hot}
-                </p>`
+                    <span>${item.price}</span>
+                    <span>${item.hot}</span>
+                </p>
+            </li>`
           })
+          list.innerHTML = str
       }
-      list.innerHTML = str
+    
 
     //   http://127.0.0.1:5500/html/html1/html/data.json
     

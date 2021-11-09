@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商城静态页面练习</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        body{
+            background: lavender;
+        }
+        .main{
+            width: 1200px;
+            margin: 0 auto;
+        }
+        .topBar{
+            width: 1200px;
+            padding-left: 30px;
+            margin: 0 auto;
+            background: #fff;
+            height: 50px;
+            line-height: 50px;
+            
+        }
+        .topBar a{
+            color: blue;
+            margin-left: 10px;
+        }
+        .list li{
+            width: 225px;
+            margin-top: 20px;
+            padding: 30px;
+            box-sizing: border-box;
+            background: #fff;
+            margin-right: 15px;
+        }
+        .list img{
+            width: 140px;
+            display: block;
+            margin: 0 auto;
+        }
+        .list p{
+            line-height: 30px;
+        }
+        .list .num{
+            display: flex;
+            justify-content: space-between;
+        }
+        .list{
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+         <div class="topBar">
+              <span>排序</span>
+               <a href="">
+                   <span>上架时间</span>
+               </a> 
+               <a href="">
+                <span>热度</span>
+            </a>
+            <a href="">
+                <span>价格</span>
+            </a>
+         </div>
+         <ul class="list">
+             <li>
+                 <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                 <p>商城静态页面练习</p>
+                 <p>2021.11.9</p>
+                 <p class="num">
+                     <b>9999</b>
+                     <b>99</b>
+                 </p>
+             </li>
+             <li>
+                <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                <p>商城静态页面练习</p>
+                <p>2021.11.9</p>
+                <p class="num">
+                    <b>9999</b>
+                    <b>99</b>
+                </p>
+            </li>
+            <li>
+                <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                <p>商城静态页面练习</p>
+                <p>2021.11.9</p>
+                <p class="num">
+                    <b>9999</b>
+                    <b>99</b>
+                </p>
+            </li>
+            <li>
+                <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                <p>商城静态页面练习</p>
+                <p>2021.11.9</p>
+                <p class="num">
+                    <b>9999</b>
+                    <b>99</b>
+                </p>
+            </li>
+            <li>
+                <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                <p>商城静态页面练习</p>
+                <p>2021.11.9</p>
+                <p class="num">
+                    <b>9999</b>
+                    <b>99</b>
+                </p>
+            </li>
+            <li>
+                <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                <p>商城静态页面练习</p>
+                <p>2021.11.9</p>
+                <p class="num">
+                    <b>9999</b>
+                    <b>99</b>
+                </p>
+            </li>
+            <li>
+                <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                <p>商城静态页面练习</p>
+                <p>2021.11.9</p>
+                <p class="num">
+                    <b>9999</b>
+                    <b>99</b>
+                </p>
+            </li>
+            <li>
+                <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                <p>商城静态页面练习</p>
+                <p>2021.11.9</p>
+                <p class="num">
+                    <b>9999</b>
+                    <b>99</b>
+                </p>
+            </li>
+            <li>
+                <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                <p>商城静态页面练习</p>
+                <p>2021.11.9</p>
+                <p class="num">
+                    <b>9999</b>
+                    <b>99</b>
+                </p>
+            </li> <li>
+                <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+                <p>商城静态页面练习</p>
+                <p>2021.11.9</p>
+                <p class="num">
+                    <b>9999</b>
+                    <b>99</b>
+                </p>
+            </li>
+
+         </ul>
+    </div>
+    <script>
+         var xhr =new XMLHttpRequest();
+         xhr.open("get","data/data.json");
+         xhr.onreadystatechange = function(){
+             var data = 
+         }  
+
+    </script>
+</body>
+</html>

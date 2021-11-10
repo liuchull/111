@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商城排序静态页面</title>
+    <style>
+      *{
+          margin: 0;
+          padding: 0;
+      }
+      ul,ol{
+          list-style: none;
+      }
+      a{
+          text-decoration: none;
+      }
+      body{
+          background: lavender;
+      }
+      .main{
+          width: 1200px;
+          margin: 0 auto;
+      }
+      .main .topBar{
+          width: 1200px;
+          margin: 0 auto;
+          background: #fff;
+          height: 50px;
+          line-height: 50px;
+          padding-left: 30px;
+      }
+      .main a{
+          margin-left: 15px;
+          color: blue;
+      }
+     .main a>span:hover{
+         color: red;
+     }
+     .list li{
+          width: 225px;
+          padding: 30px;
+          margin-top: 20px;
+          background: #fff;
+          box-sizing: border-box;
+          margin-right: 15px;
+     }
+     .list img{
+      width: 140px;
+      display: block;
+      margin: 0 auto;     
+    }
+    .list p{
+        line-height: 30px;
+    }
+    .list span{
+        display: flex;
+        justify-content: space-between;
+    }
+    .list{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="main">
+          <div class="topBar">
+              <span>排序</span>
+              <a href="javascript:;" class="sortBtn" sortFlag="time">
+                  <span>上架时间</span>
+              </a>
+              <a href="javascript:;" class="sortBtn" sortFlag="hot">
+                <span>热度</span>
+            </a>
+            <a href="javascript:;" class="sortBtn" sortFlag="price">
+                <span>价格</span>
+            </a>
+          </div>
+          <ul class="list" id="list">
+              <!-- <li>
+                   <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">  
+                   <p>计算机案例队里练习</p>
+                   <p>20211110</p>
+                   <span>
+                       <b>9999</b>
+                       <b>99</b>
+                   </span>
+              </li>
+              <li>
+                <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">  
+                <p>计算机案例队里练习</p>
+                <p>20211110</p>
+                <span>
+                    <b>9999</b>
+                    <b>99</b>
+                </span>
+           </li>
+           <li>
+            <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">  
+            <p>计算机案例队里练习</p>
+            <p>20211110</p>
+            <span>
+                <b>9999</b>
+                <b>99</b>
+            </span>
+       </li>
+       <li>
+        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">  
+        <p>计算机案例队里练习</p>
+        <p>20211110</p>
+        <span>
+            <b>9999</b>
+            <b>99</b>
+        </span>
+   </li>
+   <li>
+    <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">  
+    <p>计算机案例队里练习</p>
+    <p>20211110</p>
+    <span>
+        <b>9999</b>
+        <b>99</b>
+    </span>
+</li>
+<li>
+    <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">  
+    <p>计算机案例队里练习</p>
+    <p>20211110</p>
+    <span>
+        <b>9999</b>
+        <b>99</b>
+    </span>
+</li>
+<li>
+    <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">  
+    <p>计算机案例队里练习</p>
+    <p>20211110</p>
+    <span>
+        <b>9999</b>
+        <b>99</b>
+    </span>
+</li>
+<li>
+    <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">  
+    <p>计算机案例队里练习</p>
+    <p>20211110</p>
+    <span>
+        <b>9999</b>
+        <b>99</b>
+    </span>
+</li>
+<li>
+    <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">  
+    <p>计算机案例队里练习</p>
+    <p>20211110</p>
+    <span>
+        <b>9999</b>
+        <b>99</b>
+    </span>
+</li>
+<li>
+    <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">  
+    <p>计算机案例队里练习</p>
+    <p>20211110</p>
+    <span>
+        <b>9999</b>
+        <b>99</b>
+    </span>
+</li> -->
+          </ul>
+    </div>
+    <script>
+        var list = document.getElementById("list");
+        var sortBtns = document.querySelectorAll(".sortBtn");
+        var lis;
+      var xhr = new XMLHttpRequest();
+      var str = "";
+      var data = null;
+      xhr.open("get","data/data.json");
+      xhr.onreadystatechange = function(){
+          if(xhr.readyState==4&&/^2\d{2}/.test(xhr.status)){
+              var data = JSON.parse(xhr.responseText);
+              bindHTML(data);
+                       
+          }
+      };
+      xhr.send();
+      function bindHTML(data){
+          data.forEach(function(item,index){
+            str+=` <li time="${item.time}" hot="${item.hot}" price="${item.price}">
+            <img src="${item.img}" alt="">  
+            <p>${item.title}</p>
+            <p>${item.time}</p>
+            <span>
+                <b>${item.price}</b>
+                <b>${item.hot}</b>
+            </span>
+       </li>
+            `
+          })
+          list.innerHTML = str;   
+         lis = [].slice.call(document.querySelectorAll("li"));  
+         
+      }
+    for(var i=0;i<sortBtns.length;i++){
+        var frag = document.createDocumentFragment();
+          sortBtns[i].flag = -1;
+         sortBtns[i].onclick = function(){
+             for(var i=0;i<sortBtns.length;i++){
+                 if(sortBtns[i]!==this){
+                     sortBtns[i].flag = -1;
+                 }
+             }
+            this.flag*=-1;
+            let that = this;
+           var sortFlag = this.getAttribute("sortFlag");
+           if(sortFlag == "hot"){
+               lis.sort(function(a,b){
+                return (a.getAttribute("hot") - b.getAttribute("hot"))*that.flag;
+               })
+           }else{
+            lis.sort(function(a,b){
+                return (a.getAttribute("price") - b.getAttribute("price"))*that.flag;
+               })
+           }
+           for(var i=0;i<lis.length;i++){
+                frag.appendChild(lis[i])
+           }
+           list.appendChild(frag)
+         }    
+    }
+
+
+
+    </script>
+</body>
+</html>

@@ -66,18 +66,18 @@
     <div class="main">
          <div class="topBar">
               <span>排序</span>
-               <a href="">
+               <a href="javascript:;" class="sortBtn" sortFlag="time">
                    <span>上架时间</span>
                </a> 
-               <a href="">
+               <a href="javascript:;" class="sortBtn" sortFlag="hot">
                 <span>热度</span>
             </a>
-            <a href="">
+            <a href="javascript:;" class="sortBtn" sortFlag="price">
                 <span>价格</span>
             </a>
          </div>
-         <ul class="list">
-             <li>
+         <ul class="list" id="list">
+             <!-- <li>
                  <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
                  <p>商城静态页面练习</p>
                  <p>2021.11.9</p>
@@ -165,16 +165,81 @@
                     <b>9999</b>
                     <b>99</b>
                 </p>
-            </li>
+            </li> -->
 
          </ul>
     </div>
     <script>
+     (function(){
+        var sortBtns = document.querySelectorAll(".sortBtn");
+         var lis;
+         var str = "";
+         var data = null;
+         var  list = document.getElementById("list")
          var xhr =new XMLHttpRequest();
-         xhr.open("get","data/data.json");
+         xhr.open("get","data.json",);
          xhr.onreadystatechange = function(){
-             var data = 
-         }  
+               if(xhr.readyState==4&&/^2\d{2}/.test(xhr.status)){
+                       data = JSON.parse(xhr.responseText);
+                       bindHTML(data)
+                     
+               } 
+         }
+         xhr.send();
+          function bindHTML(data){
+              data.forEach(function(item,index){
+               str+=`<li time="${item.time}" price="${item.price}" hot="${item.hot}">
+                <img src="${item.img}" alt="">
+                <p>${item.title}</p>
+                <p>${item.price}</p>
+                <p class="num">
+                    <b>${item.time}</b>
+                    <b>${item.hot}</b>
+                </p>
+            </li>`
+              });
+              list.innerHTML = str;
+             
+              
+          setTimeout(()=>{
+            lis =  [].slice.call( document.querySelectorAll("li"));
+           
+          },0)                     
+          }  
+         for(var i=0;i<sortBtns.length;i++){
+            sortBtns[i].flag = -1;
+              sortBtns[i].onclick = function(){
+                  for(var i=0;i<sortBtns.length;i++){
+                     if(sortBtns[i]!=this){
+                          sortBtns[i].flag = -1
+                     }
+                  };
+                  let frag = document.createDocumentFragment();
+                 this.flag*=-1;
+                 let that = this;
+                let sortFlag = this.getAttribute("sortFlag");
+                if(sortFlag == "price"){
+             
+                      lis.sort(function(a,b){
+                        return (a.getAttribute("price") - b.getAttribute("price"))*that.flag
+                            
+                      });
+                      
+                }else{
+                    
+                    lis.sort(function(a,b){
+                        return (a.getAttribute("hot") - b.getAttribute("hot"))*that.flag
+                            
+                      });
+                }
+                for(var i=0;i<lis.length;i++){
+                           list.appendChild(lis[i])    
+                }
+                list.appendChild(frag)
+              }
+              
+         }
+     })()   
 
     </script>
 </body>

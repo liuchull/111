@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则练习</title>
+</head>
+<body>
+    <script>
+        //  把时间字符串处理\\
+        // let time = "2021-11-13";
+        // let reg = /(\d{4})-(\d{1,2})-(\d{1,2})/  
+        // console.log(reg.exec(time))
+        // let res = time.replace(reg,(...ary)=>{
+        //      let [,$1,$2,$3] = ary;
+        //      console.log(ary)
+        //    $2 =  $2.length<2?"0"+$2:$2;
+        //    $3 =  $3.length<2?"0"+$3:$3;
+        //      return `${$1}年${$2}月${$3}日`;
+        // })
+        // console.log(res)
+    //    let time = "2021.11.13";
+    //    console.log(time.replace(/\./g,""))
+
+
+
+
+
+
+     let time = "2021.11.13";
+     let reg = /^(\d{4})\.(\d{1,2})\.(\d{1,2})$/;
+     console.log(reg.exec(time))
+      let res = time.replace(reg,function($1,$2,$3,$4){
+          console.log($1,$2,$3,$4)
+          $4 = $4.length<2?"0"+$4:$4;
+          $3 = $3.length<2?"0"+$3:$3;
+          return `${$2}年${$3}月${$4}日`
+      });
+      console.log(res)
+
+   
+
+
+
+    </script>
+</body>
+</html>

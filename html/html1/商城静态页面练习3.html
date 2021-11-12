@@ -224,7 +224,7 @@
            if(sortflag == "time"){
                 lis.sort(function(a,b){
              
-                return  a.getAttribute("time").replace(/./g,"")-b.getAttribute("time").replace(/./g,"")
+                return  a.getAttribute("time").replace(/\./g,"")-b.getAttribute("time").replace(/./g,"")
                
                 })  
            }

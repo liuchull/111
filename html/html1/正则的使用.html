@@ -9,5 +9,23 @@
 <body>
     var reg = /^1[3-9]\d{9}$/
     let reg = /^1[3-9]{1}\d{9}$/
+    let str = "zhufeng@2019|zhufeng@2020";
+//=>需求：把"zhufeng"替换成"珠峰"
+str = str.replace("zhufeng","珠峰").replace("zhufeng","珠峰");
+console.log(str); // "珠峰@2019|珠峰@2020";
+
+//---------------------使用正则会变得简单一点
+str = str.replace(/zhufeng/g, "珠峰");
+console.log(str); // "珠峰@2019|珠峰@2020"
+
+ //=>需求：把"zhufeng"替换为"zhufengpeixun"
+let str1 = "zhufeng@2019|zhufeng@2020";
+// str1=str1.replace("zhufeng","zhufengpeixun").replace("zhufeng","zhufengpeixun");  //"zhufengpeixunpeixun@2019|zhufeng@2020" 每一次替换都是从字符串第一个位置开始找的
+
+//==>----------基于正则g实现
+// str = str.replace(/zhufeng/g, "zhufengpeixun");
+// console.log(str); // "zhufengpeixun@2019|zhufengpeixun@2020"
+
+
 </body>
 </html>

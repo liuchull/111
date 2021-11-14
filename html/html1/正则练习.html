@@ -5,8 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>正则练习</title>
+    <style>
+   .main{
+       width: 200px;
+       height: 200px;
+       line-height: 200px;
+       text-align: center;
+       border-radius: 50%;
+       border: 2px solid #444;
+       background: orangered;
+       color:white;
+       font-size: 30px;
+       font-weight: 400;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            display: none;
+   }
+
+
+
+    </style>
 </head>
 <body>
+    <div class="main">
+     
+    </div>
     <script>
         //  把时间字符串处理\\
         // let time = "2021-11-13";
@@ -28,18 +52,58 @@
 
 
 
-     let time = "2021.11.13";
-     let reg = /^(\d{4})\.(\d{1,2})\.(\d{1,2})$/;
-     console.log(reg.exec(time))
-      let res = time.replace(reg,function($1,$2,$3,$4){
-          console.log($1,$2,$3,$4)
-          $4 = $4.length<2?"0"+$4:$4;
-          $3 = $3.length<2?"0"+$3:$3;
-          return `${$2}年${$3}月${$4}日`
-      });
-      console.log(res)
+    //  let time = "2021.11.13";
+    //  let reg = /^(\d{4})\.(\d{1,2})\.(\d{1,2})$/;
+    //  console.log(reg.exec(time))
+    //   let res = time.replace(reg,function($1,$2,$3,$4){
+    //       console.log($1,$2,$3,$4)
+    //       $4 = $4.length<2?"0"+$4:$4;
+    //       $3 = $3.length<2?"0"+$3:$3;
+    //       return `${$2}年${$3}月${$4}日`
+    //   });
+    //   console.log(res)
 
    
+
+
+
+
+
+
+
+
+
+
+        // 把时间字符串处理
+        // let time = "2021.11.14";
+        // let reg = /^(\d{4})\.(\d{1,2})\.(\d{1,2})$/;
+        // console.log(reg.exec(time));
+        // let res = time.replace(reg,function(...ary){
+        //        console.log(ary);
+        //        let [,$1,$2,$3] = ary;
+        //        console.log([,$1,$2,$3]);
+        //        $2 = $2.length<2?"0"+$2:$2;
+        //        $3 = $3.length<2?"0"+$3:$3;
+        //        return `${$1}年${$2}月${$3}日`
+
+        // })
+        // console.log(res)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

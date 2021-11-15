@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封装样式和设置样式方法封装</title>
+    <style>
+    .main{
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+    }
+ 
+
+    </style>
+</head>
+<body>
+    <div class="main" id="main">
+              
+    </div>
+    <script>
+       let main = document.getElementById("main");
+       function getCss(ele,sttr){
+           let val = null;
+          if("getComputedStyle" in window){
+               val = getComputedStyle(ele)[sttr]   
+          }else{
+              val = ele.currentStyle[sttr];
+          }
+          let reg = /^(width|height)$/;
+          if(reg.test(sttr)){
+             val = parseFloat(val)
+          }
+          return val
+       }
+     
+       function setCss(ele,sttr,value){
+             let reg = /^(width|height)$/;
+             if(reg.test(sttr)){
+                  if(typeof value == "number"){
+                      value = value + "px"
+                  }
+             }
+             ele.style[sttr] = value;
+       }
+
+       function setGroupCss(ele,obj){
+          for(var key in obj ){
+                  setCss(ele,key,obj[key])
+          }
+       }
+
+        function css(){
+            let [ele,sttr,value] = arguments;
+            if(arguments.length == 2){
+                if(typeof sttr == "string"){
+                    return   getCss(ele,sttr)
+                }else{
+                    setGroupCss(ele,sttr)
+                }       
+            }
+            if(arguments.length == 3){
+                setCss(ele,sttr,value)
+            }
+        }
+
+
+
+
+    </script>
+</body>
+</html>

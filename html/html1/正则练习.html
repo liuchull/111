@@ -6,7 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>正则练习</title>
     <style>
-   .main{
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .main{
+            width: 1200px;
+            height: 100%;
+            overflow:auto;
+        }
+   .goBack{
        width: 200px;
        height: 200px;
        line-height: 200px;
@@ -20,6 +29,7 @@
             position: fixed;
             right: 20px;
             bottom: 20px;
+
             display: none;
    }
 
@@ -28,10 +38,53 @@
     </style>
 </head>
 <body>
-    <div class="main">
-     
+    <div class="main" id="main">
+        <div>
+        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+        <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+    </div>
+        <div id="goBack" class="goBack">
+            返回顶部
+        </div>
     </div>
     <script>
+        let main = document.getElementById("main");
+        let goBack = document.getElementById("goBack");
+        goBack.onclick = function(){
+           let winT = document.documentElement.scrollTop;
+           console.log(winT)
+           let mean = winT/2;
+           let timer = setInterval(()=>{
+              winT-=mean;
+              if(winT<=0){
+                 clearInterval(timer)
+              }  
+              document.documentElement.scrollTop=winT;
+              console.log(winT)
+           },1)
+
+
+
+
+        }
+        function cheak(){
+            
+            let winH = document.documentElement.clientHeight;
+            
+            let winT = document.documentElement.scrollTop;
+            console.log(winH,winT)
+            if(winH<winT){
+                goBack.style.display = "block"
+            }else{
+                goBack.style.display = "none"
+            }
+            
+        }
+        window.onscroll = cheak
+        // cheak()
         //  把时间字符串处理\\
         // let time = "2021-11-13";
         // let reg = /(\d{4})-(\d{1,2})-(\d{1,2})/  

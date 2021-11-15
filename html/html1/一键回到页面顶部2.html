@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一键回到页面顶部</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: lavender;
+        }
+        .back{
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background: orangered;
+            color: salmon;
+            font-size: 20px;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            border-radius: 50%;
+            border: 1px solid #444;
+            display: none;
+        }
+        img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+         <div class="back" id="back">
+             回到顶部
+         </div>
+    </div>
+    <script>
+    let back = document.getElementById("back");
+    back.onclick = function(){
+        let winT = document.documentElement.scrollTop;
+        let mean = winT/50;
+        let timer = setInterval(()=>{
+              winT-=mean;
+              if(winT<=0){
+                clearInterval(timer)
+              }          
+              document.documentElement.scrollTop=winT;
+        },20)
+    }
+       function del(){
+           let winT = document.documentElement.scrollTop;
+           let winH = document.documentElement.clientHeight;
+           if(winT>winH){
+                back.style.display = "block"
+           }else{
+               back.style.display = "none"
+           }
+       }
+      window.onscroll = del  
+    </script>
+</body>
+</html>

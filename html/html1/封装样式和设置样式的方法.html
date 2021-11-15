@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封装和设置样式的方法</title>
+
+    <style>
+   .main{
+       width: 100px;
+       height: 100px;
+       font-size: 14px;
+       border: 1px solid #444;
+   }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="main" id="main">
+       
+    </div>
+    <script>
+        let main = document.getElementById("main")
+    //   function getCss(ele,attr){
+    //       let value = null;
+    //  if("getComputedStyle" in window){
+    //     value = getComputedStyle(ele)[attr];
+    //  }else{
+    //      value = ele.currentStyle[attr]
+    //  }
+    //  let reg = /^(width|height)$/;
+    //  if(reg.test(attr)){
+    //      value = parseFloat(value)   
+    //  }
+    //     return value
+    //   }
+    //  let w = getCss(main,"width")
+   
+
+
+    function getCss(ele,sttr){
+        let val = null;
+       if("getComputedStyle" in window){
+          val = getComputedStyle(ele)[sttr];
+       }else{
+           val = ele.currentStyle[sttr];
+       }
+       let reg = /^(width|height)$/;
+       if(reg.test(sttr)){
+          val = parseFloat(val)
+       } 
+       return val
+    }
+      let w = getCss(main,"width");
+      console.log(w)
+
+    function setCss(ele,sttr,value){
+        let  reg = /^(width|height)$/;
+         if(reg.test(sttr)){
+            // let number = parseInt(value);
+            // ele.style[sttr] = number + "px";
+            if (typeof value === 'number') {
+                value = value + 'px';
+            }
+
+         } 
+       ele.style[sttr] = value; 
+       
+    }
+    function setGroupCss(ele,obj){
+        for (var key in obj) {
+            setCss(ele, key, obj[key])
+        }
+    } 
+
+    // function css(){
+    //     let [Ele,sttr,value] = arguments;
+    //     // 如果传参的个数是2，那就说明不是获取样式就是批量设置样式
+    //     if(arguments.length === 2){
+    //         // 如果第二个参的数据类型是字符串，那就是获取样式
+    //         if(typeof attr === 'string'){
+    //             // 如果第二个参数是字符串，说明是获取样式
+    //             return getCss(Ele,sttr)
+    //         }
+    //         else {
+    //             setGroupCss(ele,sttr)
+    //         }
+    //     }
+    //     // 如果传递的参数是3个，那就是单个设置样式
+    //     else if(arguments.length === 3){
+    //         setCss(curEle,attr,value)
+    //     }
+
+    // }
+
+    console.log(w)
+
+
+
+    function Css(){
+        let [ele,sttr,value] = arguments;
+        if(arguments.length ==2){
+             if(typeof sttr == "string"){
+               return  getCss(ele,sttr)
+             }else{
+                setGroupCss(ele,sttr)
+             }
+        }
+        if(arguments.length == 3){
+            setCss(ele,sttr,value)
+        }
+    }
+
+    </script>
+</body>
+</html>

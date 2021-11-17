@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多张图片延时加载</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+        }
+        .main{
+            width: 400px;
+            margin: 400px auto;
+        }
+        img{
+            width: 380px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg"   true-img="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnimg.ws.126.net%2F%3Furl%3Dhttp%253A%252F%252Fdingyue.ws.126.net%252F2021%252F1022%252F24159e95j00r1c4ml0025c000rs00b4c.jpg%26thumbnail%3D650x2147483647%26quality%3D80%26type%3Djpg&refer=http%3A%2F%2Fnimg.ws.126.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1639743893&t=5b41da9a74aebc4b132c852d62bc68a2"  alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg"   true-img="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnimg.ws.126.net%2F%3Furl%3Dhttp%253A%252F%252Fdingyue.ws.126.net%252F2021%252F1022%252F24159e95j00r1c4ml0025c000rs00b4c.jpg%26thumbnail%3D650x2147483647%26quality%3D80%26type%3Djpg&refer=http%3A%2F%2Fnimg.ws.126.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1639743893&t=5b41da9a74aebc4b132c852d62bc68a2"  alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg"   true-img="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnimg.ws.126.net%2F%3Furl%3Dhttp%253A%252F%252Fdingyue.ws.126.net%252F2021%252F1022%252F24159e95j00r1c4ml0025c000rs00b4c.jpg%26thumbnail%3D650x2147483647%26quality%3D80%26type%3Djpg&refer=http%3A%2F%2Fnimg.ws.126.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1639743893&t=5b41da9a74aebc4b132c852d62bc68a2"  alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg"   true-img="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnimg.ws.126.net%2F%3Furl%3Dhttp%253A%252F%252Fdingyue.ws.126.net%252F2021%252F1022%252F24159e95j00r1c4ml0025c000rs00b4c.jpg%26thumbnail%3D650x2147483647%26quality%3D80%26type%3Djpg&refer=http%3A%2F%2Fnimg.ws.126.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1639743893&t=5b41da9a74aebc4b132c852d62bc68a2"  alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg"   true-img="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnimg.ws.126.net%2F%3Furl%3Dhttp%253A%252F%252Fdingyue.ws.126.net%252F2021%252F1022%252F24159e95j00r1c4ml0025c000rs00b4c.jpg%26thumbnail%3D650x2147483647%26quality%3D80%26type%3Djpg&refer=http%3A%2F%2Fnimg.ws.126.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1639743893&t=5b41da9a74aebc4b132c852d62bc68a2"  alt="">
+         <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg"   true-img="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnimg.ws.126.net%2F%3Furl%3Dhttp%253A%252F%252Fdingyue.ws.126.net%252F2021%252F1022%252F24159e95j00r1c4ml0025c000rs00b4c.jpg%26thumbnail%3D650x2147483647%26quality%3D80%26type%3Djpg&refer=http%3A%2F%2Fnimg.ws.126.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1639743893&t=5b41da9a74aebc4b132c852d62bc68a2"  alt="">
+    </div>
+    <script>
+        (function(){
+            imgs = document.querySelectorAll("img");
+        winT = document.documentElement.clientHeight;
+        function delay(){
+             for(let i=0;i<imgs.length;i++){
+                delayImg(imgs[i])  
+             }
+        }
+        
+        function delayImg(img){
+
+           let imgT = img.offsetHeight;
+           let imgH = img.offsetTop;
+           let winH = document.documentElement.scrollTop;
+           if(winH+winT>=imgH+imgT){
+             let address = img.getAttribute("true-img");
+             let newImg = document.createElement("img");
+             newImg.src=address;
+             newImg.onload = function(){
+                 img.src = address;
+                 img.flag = true;
+                 newImg = null;
+                  fadeIn(img);
+             }
+           }
+        }
+         function fadeIn(img){
+             img.style.opacity = 0.05;
+             let cur = parseFloat( img.style.opacity);
+             let timer = setInterval(function(){
+                cur+=0.05;
+                img.style.opacity=cur;
+                if(cur>=1){
+                 clearInterval(timer)
+                }
+             },50)
+         }
+        delay();
+        window.onscroll = delay
+        })()
+       
+    </script>
+</body>
+</html>

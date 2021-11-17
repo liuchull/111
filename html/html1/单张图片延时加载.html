@@ -27,32 +27,53 @@
 </head>
 <body>
     <div class="main" id="main">
-             <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" alt="">
+             <img src="http://dpic.tiankong.com/vn/k8/QJ8754611705.jpg" true-img="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnimg.ws.126.net%2F%3Furl%3Dhttp%253A%252F%252Fdingyue.ws.126.net%252F2021%252F1022%252F24159e95j00r1c4ml0025c000rs00b4c.jpg%26thumbnail%3D650x2147483647%26quality%3D80%26type%3Djpg&refer=http%3A%2F%2Fnimg.ws.126.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1639743893&t=5b41da9a74aebc4b132c852d62bc68a2" alt="">
     </div>
     <script>
      let img = document.querySelector("img");
      let imgH = img.offsetHeight;
      let imgT = img.offsetTop;
      let winH = document.documentElement.clientHeight;
-     let winT = document.documentElement.scrollTop;
+     
+  
       function delay(){
+        let winT = document.documentElement.scrollTop;
+        console.log(imgH,imgT,winH,winT)
           if(img.flag){
             return
           };
           if(winH+winT>=imgH+imgT){
              let address = img.getAttribute("true-img");
-             let newImg = new Image;
+             console.log(address)
+             let newImg = document.createElement("img");
+             newImg.src = address;
+             console.log(newImg)
              newImg.onload = function(){
                  img.src = address;
                  newImg = null;
                  img.flag = true;
+                 fadeIn(img);
+                 console.log(1111)
              }
              newImg.onerror = function(){
                  console.log(2222);
              }
           }
       }
-
+      function fadeIn(img){
+          img.style.opacity = 0.05;
+          let cur = parseFloat( img.style.opacity);
+          let timer = setInterval(function(){
+              cur+=0.05;
+              img.style.opacity=cur;
+              if(cur>=1){
+                clearInterval(timer)
+              }
+          },500)
+      }
+          window.onscroll = function(){
+              delay()
+          }
     </script>
 </body>
 </html>

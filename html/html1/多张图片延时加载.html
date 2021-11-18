@@ -44,13 +44,15 @@
         }
         
         function delayImg(img){
-
+          
            let imgT = img.offsetHeight;
            let imgH = img.offsetTop;
+          
            let winH = document.documentElement.scrollTop;
            if(winH+winT>=imgH+imgT){
              let address = img.getAttribute("true-img");
              let newImg = document.createElement("img");
+             console.log(address,newImg)
              newImg.src=address;
              newImg.onload = function(){
                  img.src = address;

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瀑布流</title>
+    <style>
+              *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 850px;
+            margin: 20px auto;
+            background: rgba(235, 162, 229, 0.3);
+            height: 200px;
+            display: flex;
+            align-items: flex-start;
+        }
+        ul{
+            width: 24%;
+            margin: 0 0.5%;
+            background: plum;
+            list-style: none;
+        }
+        ul li{
+            width: 100%;
+
+        }
+        ul li img{
+            display: block;
+            width: 100%;
+            
+        }
+        ul li p{
+            text-align: center;
+            font-size: 18px;
+            color:seagreen
+        }
+        .back{
+          /* width: 150px;
+          height: 150px;
+          line-height: 150px;
+          text-align: center;
+          border: 1px solid #444;
+          border-radius: 50%;
+          box-sizing: border-box; */
+           width: 100px;
+            height: 100px;
+            background: orangered;
+            color: blue;
+            line-height: 100px;
+            text-align: center;
+            border: 1px solid #444;
+            border-radius: 50%;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <ul>
+            <li>
+                <img src="img1/微信图片_20211118194330.jpg" alt="">
+                <p>遇见你真好</p>
+            </li>
+        </ul>
+        <ul>
+           <!-- <li>
+               <img src="img1/微信图片_20211010215456.jpg" alt="">
+               <p>遇见你真好</p>
+           </li> -->
+       </ul>
+       <ul>
+           <!-- <li>
+               <img src="img1/微信图片_20211010215502.jpg" alt="">
+               <p>遇见你真好</p>
+           </li> -->
+       </ul>
+       <ul>
+           <!-- <li>
+               <img src="img1/微信图片_20211118194330.jpg" alt="">
+               <p>遇见你真好</p>
+           </li> -->
+       </ul>
+       <div class="back" id="back">
+        <p>回到顶部</p>
+    </div>
+    </div>
+   
+      <script>
+          (function(){
+         let uls = document.getElementsByTagName("ul");
+         let imgs = document.getElementsByClassName("bg");
+         let back = document.getElementById("back");         
+         uls = Array.from(uls);
+         let data = null;
+         function getData(){
+             let xhr = new XMLHttpRequest;
+             xhr.open("get","data/data.txt",false);
+             xhr.onreadystatechange = function(){
+                 if(xhr.readyState==4&&/^2\d{2}$/.test(xhr.status)){
+                     data = JSON.parse(xhr.responseText)       
+                 }
+             }
+             xhr.send();
+             randerHtml(data)
+            
+         }
+         function randerHtml(data){
+             for(let i=0;i<40;i++){
+              let index = Math.round(Math.random()*9);
+              let curImg = data[index];   
+              let  p = document.createElement("p");
+             let li = document.createElement("li");
+             let img = document.createElement("img");
+             img.setAttribute("true-img",curImg.src);
+             let heightL = Math.round(Math.random()*70+180)+"px";
+              img.style.height = heightL;
+              p.innerText = curImg.title;
+             img.className = "bg";
+             li.appendChild(p);
+             li.appendChild(img);
+             
+             uls.sort(function(a,b){
+               return a.scrollHeight - b.scrollHeight
+             })           
+             uls[0].appendChild(li);  
+             }
+              
+     
+
+         }
+         function delay(){
+             for(let i=0;i<imgs.length;i++){
+                delayImg(imgs[i])
+             }
+         }
+         function delayImg(img){
+             let winT = document.documentElement.scrollTop;
+             let winH = document.documentElement.clientHeight;
+             let imgH = img.offsetHeight;
+             let imgT = img.offsetTop;
+             console.log(winT,winH)
+             if(winT+winH>=imgH+imgT){
+                 let address = img.getAttribute("true-img");
+                 let newImg = document.createElement("img");
+                 newImg.src = address;
+                 newImg.onload = function(){
+                   img.src = address;
+                   newImg.src = null;
+                   img.className = "";
+                   fadeIn(img)
+                 } 
+             }
+         }
+         function fadeIn(img){
+             img.style.opacity = 0.05;
+             let cur = parseFloat(img.style.opacity);
+             let timer = setInterval(function(){
+                 cur+=0.05;
+                 img.style.opacity = cur;
+                 if(cur>=1){
+                   clearInterval(timer)
+                 }
+             },50)
+         }
+         function backTop(){
+            back.onclick = function(){
+               let winT = document.documentElement.scrollTop;
+               let mean = winT/50;
+               let timer = setInterval(function(){
+                winT -=mean;
+                if(winT<=0){
+                 clearInterval(timer)
+                }
+                document.documentElement.scrollTop=winT;
+               },20)
+           }
+
+         }
+         function delBack(){
+             let winT = document.documentElement.scrollTop;
+             let winH = document.documentElement.clientHeight;
+             if(winT>winH){
+                  back.style.display="block"
+             }else{
+                  back.style.display="none"
+             }
+         }
+         function bottomDisplay(){
+            let winT = document.documentElement.scrollTop;
+            let winH = document.documentElement.clientHeight;
+            let bodyH = document.documentElement.scrollHeight;
+            if(winT+winH+100>=bodyH){
+                getData()
+            }
+         }
+         getData();
+         backTop();
+         delay();
+         
+         window.onscroll = function(){
+               delay();
+               delBack();
+               bottomDisplay()
+         } 
+
+          })()
+           
+
+      
+
+
+
+
+
+      </script>
+   
+</body>
+</html>

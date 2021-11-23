@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瀑布流</title>
+    <style>
+         *{
+             margin: 0;
+             padding: 0;
+         }
+         ul,ol{
+             list-style: none;
+         }
+         .main{
+             width: 800px;
+             margin: 20px auto;
+             background: purple;
+             display: flex;
+             align-items: flex-start;
+             height: 300px;
+         }
+         ul{
+             width: 24%;
+             margin: 0 0.5%;
+             background: plum;
+         }
+         ul,li{
+             width: 100%;
+         }
+         ul li img{
+             width: 100%;
+             display: block;
+
+         }
+        
+    </style>
+</head>
+<body>
+    <div class="main" id="main">
+          <ul>
+              <li>
+                  <img src="img1\微信图片_20211010215451.jpg" alt="">
+                  <p></p>
+              </li>
+          </ul>
+          <ul>
+            <!-- <li>
+                <img src="" alt="">
+                <p></p>
+            </li> -->
+        </ul>
+        <ul>
+            <!-- <li>
+                <img src="" alt="">
+                <p></p>
+            </li> -->
+        </ul>
+        <ul>
+            <!-- <li>
+                <img src="" alt="">
+                <p></p>
+            </li> -->
+        </ul>      
+    </div>
+    <script>
+        let uls = document.getElementsByTagName("ul");
+      
+        let data = null;
+        uls = Array.from(uls);
+        function rr(){
+            let xhr = new XMLHttpRequest;
+        xhr.open("get","data/data.txt",false);
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState==4&&/^2\d{2}$/.test(xhr.status)){
+                 data =JSON.parse(xhr.responseText);
+                 console.log(data);
+            }
+        }
+        randerHtml(data);
+        xhr.send()    
+        }
+       rr()    
+         function randerHtml(data){
+            // for(let i=0;i<20;i++){
+                let index = Math.round(Math.random()*9);
+                 let  curImg = data[index];
+                 console.log(curImg)    
+                //   }
+         } 
+
+
+    </script>
+</body>
+</html>

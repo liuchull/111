@@ -90,6 +90,7 @@
            for(let i=0;i<40;i++){
             let index = Math.round(Math.random()*9);
           let curImg = data[index];
+          console.log(curImg)
           let li = document.createElement("li");
           let img = document.createElement("img");
           let p = document.createElement("p");
@@ -121,7 +122,7 @@
        let imgH = img.offsetHeight;
        let imgT = img.offsetTop;
        let winT = document.documentElement.scrollTop;
-    //    console.log(imgH,imgT,winT,winH)
+       console.log(imgH,imgT,winT,winH)
        if(winH+winT>=imgH+imgT){
            let address =  img.getAttribute("true-img");
            let newImg =document.createElement("img" );

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jq选项卡</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: lavender;
+        }
+        .main{
+            width: 500px;
+            margin: 0 auto;
+            background: #fff;
+            
+        }
+        ul{
+            text-decoration: none;
+            /* display: flex;
+            justify-content: space-around; */
+        }
+       
+        li{
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border: 1px solid #444;
+            display: inline-block;
+           
+            margin-bottom: -1px;
+        }
+        .main div{
+            width: 300px;
+            height: 300px;
+            line-height: 300px;
+            text-align: center;
+            font-size: 30px;
+            border: 1px solid #444;
+            display: none;
+        }
+        .main div.active{
+          display: block;
+          background-color: aquamarine;
+      }
+      .main li.active{
+          background-color: aquamarine;
+          border-bottom-color: aquamarine;
+      }
+
+    </style>
+</head>
+<body>
+    <div class="main" id="main">
+         <ul>
+             <li class="active">1</li>
+             <li>2</li>
+             <li>3</li>
+         </ul>
+         <div class="active">
+             我们是一
+         </div>
+         <div>
+            我们是二
+        </div>
+        <div>
+            我们是三
+        </div>
+    </div>
+    <script src="js/jq"></script>
+    <script>
+        (function(){
+        //    let lis  = document.querySelectorAll("li");
+        //    let divs = document.querySelectorAll(".main div");
+        //    for(let i=0;i<lis.length;i++){
+        //        lis[i].onclick = function(){
+        //            Selected(i)
+        //        }
+        //    }
+        //    function Selected(index){
+        //    for(let i=0;i<divs.length;i++){
+        //          divs[i].className = "";
+        //          lis[i].className = "";
+        //    }
+        //    divs[index].className = "active";
+        //    lis[index].className = "active"; 
+        //    } 
+        // $("#main li").each(function(index,item){
+        //    console.log(item)
+        //    $(item).click(function(){
+        //        console.log(1)
+        //    })
+        // }) 
+        // $("#main li").click(function(){
+        //     console.log($(this).index())
+        //     $(this).addClass("active").siblings().removeClass("active");
+        //     $("#main div").eq($(this).index()).addClass("active").siblings().removeClass("active")
+        // })
+           $("#main li").click(function(){
+               $(this).addClass("active").siblings().removeClass("active").parent().siblings().eq($(this).index()).addClass("active").siblings("div").removeClass("active")
+           })
+        })()
+    </script>
+</body>
+</html>

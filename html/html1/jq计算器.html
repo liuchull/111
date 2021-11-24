@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jq计算器</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        body{
+            background-color: rgb(88, 102, 62);
+        }
+        .main{
+            width: 479px;
+            height: 521px;
+            margin: 0 auto;
+            border: 2px solid #444;
+            color: lavender;
+            position: relative;
+            border-radius: 5px;
+            box-sizing: border-box;
+            padding: 30px;
+        }
+        .main li{
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            justify-content: space-evenly;
+        }
+        .main .info{
+           color: lightskyblue;
+        }
+        button{
+            width: 40px;
+            height: 50px;
+            border: none;
+        }
+        .main .num{
+            width: 40px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: #444;
+            border-radius: 10px;
+        }
+        .shopInfo{
+            position: absolute;
+            left: 60px;
+            bottom: 50px;
+        }
+        .shopInfo p{
+            line-height: 30px;
+            color: lawngreen;
+            font-size: 20px;
+        }
+        .shopInfo span{
+            color: red;
+        }
+        </style>
+</head>
+<body>
+    <div class="main">
+        <div class="head">
+                 <ul>
+                     <li>
+                         <button class="add" flag="1"></button>
+                         <b class="num">0</b>
+                         <button class="sub" flag="0"></button>
+                         <span class="info">
+                           单价：<span class="itemPrice">1</span>元
+                           小计：<b class="xjMoney">0</b>元
+                         </span>
+                        
+                     </li>
+                     <li>
+                       <button class="add" flag="1"></button>
+                       <b class="num">0</b>
+                       <button class="sub" flag="0"></button>
+                       <span class="info">
+                           单价：<span class="itemPrice">2</span>元
+                           小计：<b class="xjMoney">0</b>元
+                       </span>
+                      
+                   </li>
+                   <li>
+                       <button class="add" flag="1"></button>
+                       <b class="num">0</b>
+                       <button class="sub" flag="0"></button>
+                       <span class="info">
+                           单价：<span class="itemPrice">3</span>元
+                       小计：<b class="xjMoney">0</b>元
+                       </span>
+                       
+                   </li>
+                 </ul>
+        </div>
+       <div class="shopInfo">
+           <p>商品共<span class="totalNum">0</span>件</p>
+           <p>商品共花了<span class="totalMoney">0</span>元</p>
+           <p>其中最贵的商品单价是<span class="specileMoney">0</span>元</p>
+       </div>
+       <script src="js/jq"></script>
+       <script>
+           $(".head button").click(function(){
+               console.log(11111);
+              let index = $(this).index();
+              let count = parseFloat($(this).siblings("b").html());
+              let price = parseFloat($(this).siblings("span").find("span").html());
+              if(index == 0){
+                   count++;
+                   count>10? count=10:count;
+              }else{
+                  count--
+                  count<0? count=0:count;
+              }
+              $(this).siblings("b").html(count);
+              $(this).siblings("span").find("b").html(price*count);
+              computed();        
+           })  
+           function computed(){
+               let totalNum = 0;
+               let totalMoney = 0;
+               let ary = [0];
+               $(".head .num").each(function(index,item){              
+                let count = parseFloat($(item).html());
+                  totalNum+=count
+               });
+               $(".head .xjMoney").each(function(index,item){
+                let count = parseFloat($(item).html());
+                totalMoney+=count;
+                
+               }); 
+               $(".head .itemPrice").each(function(index,item){
+                   if(parseFloat($(item).next("b").html())){
+                     ary.push(parseFloat($(item).html()));
+                     
+                   }   
+                   
+               })
+               console.log(ary)
+               $(".shopInfo span").eq(0).html(totalNum);
+               $(".shopInfo span").eq(1).html(totalMoney);
+               $(".shopInfo span").eq(2).html(Math.max(...ary))
+           }
+       </script>
+</body>
+</html>

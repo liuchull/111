@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非立即执行的防抖</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box{
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        border: 1px solid #444;
+        background: red;
+        line-height: 100px;
+        text-align: center;
+        font-size: 30px;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div class="box" id="box">
+       点我啊
+    </div>
+    <script>
+        // let box = document.getElementById("box");
+        // let num=0;
+        // function debonce(fn,time){
+        //     let timer;
+        //     return function(){
+        //         clearTimeout(timer);
+        //          timer = setTimeout(()=>{
+        //             fn.call(this);                   
+        //         },time)
+        //     }
+        // }
+        //  let   fn =  function(){
+        //      console.log(num++)
+        //  }
+        // box.onclick = debonce(fn,1000) 
+
+        // let box  =  document.getElementById("box");
+        // let num=0;
+        // function debonce(fn,time){
+        //     let timer;
+        //     return function(){
+        //      clearTimeout(timer);
+        //      timer = setTimeout(()=>{
+        //          fn()
+        //      },time)
+        //     }
+        // }
+
+        // let fn = function(){
+        //     console.log(++num)
+        // }
+        // box.onclick = debonce(fn,1000)
+    //        let box = document.getElementById("box");
+    //        let num=0;
+    //        function debonce(fn,time){
+    //            let timer;
+    //            return function(){
+    //                clearTimeout(timer);
+    //                timer =setTimeout(function(){
+    //                    fn.call(this)
+    //                },time) 
+    //            }
+    //        }
+
+
+    //       let fn = function(){
+    //           console.log(++num)
+    //       }
+
+    //      box.onclick = debonce(fn,1000)
+
+
+    //      function debounce(fn, time) {
+    //   let timer;
+    //   return function () {
+    //     clearTimeout(timer);
+    //     let now = !timer;
+    //     timer = setTimeout(() => {
+    //       timer = null;
+    //     }, 1000);
+    //     if (now) {
+    //       fn.call(this)
+    //     };
+    //   }
+    // }
+
+       let timer = setTimeout(function(){
+           console.log(111)
+       },1000)
+        console.log(timer)
+
+
+
+
+
+
+    </script>
+</body>
+</html>

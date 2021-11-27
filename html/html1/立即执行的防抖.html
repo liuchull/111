@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            border: 1px solid #444;
+            background: red;
+            line-height: 100px;
+            text-align: center;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+     <div class="box" id="box">
+         点我啊
+     </div>
+     <script>
+         let box = document.getElementById("box");
+         let num=0;
+          function debonce(fn,time){
+               let timer;
+               return function(){
+                   let now = !timer;
+                   clearTimeout(timer);
+                   timer = setTimeout(()=>{
+                       timer = null
+                   },time);
+                   if(now){
+                       fn.call(this)
+                   }
+               }
+          }
+          let fn = function(){
+              console.log(++num)
+          }
+          box.onclick = debonce(fn,1000);
+          box;
+     </script>
+</body>
+</html>

@@ -94,16 +94,67 @@
     //   }
     // }
 
-       let timer = setTimeout(function(){
-           console.log(111)
-       },1000)
-        console.log(timer)
+    //    let timer = setTimeout(function(){
+    //        console.log(111)
+    //    },1000)
+    //     console.log(timer)
 
 
-
-
-
-
+      let  box = document.getElementById("box");
+      let  num = 0;
+    //   function debounce(fn,time){
+    //       let timer;
+    //       return function(){
+    //           clearTimeout(timer)
+    //       };
+    //       timer = setTimeout(()=>{
+    //           fn()
+    //       },time)
+    //   }
+    //  function debounce(fn,time){
+    //      let timer;
+        //  return function(){
+        //      clearTimeout(timer);
+        //      now = !timer;
+        //      timer = setTimeout(function(){
+        //          timer = null;
+        //      },time);
+        //      if(now){
+        //      fn.call(this)
+        //  }
+    //      }
+       
+    //  }
+     let fn = function(){
+         console.log(++num)
+     }
+     function debounce(fn,time,abslute){
+        let timer;
+        if(abslute){
+            return function(){
+             clearTimeout(timer);
+             now = !timer;
+             timer = setTimeout(function(){
+                 timer = null;
+                 if(now){
+               fn.call(this)
+                 }
+             },time);
+          
+         }
+        }else{
+            return function(){
+              clearTimeout(timer)
+              timer = setTimeout(()=>{
+              fn()
+          },time)
+            }
+          };
+       
+         
+        
+     }
+     box.onclick = debounce(fn,1000,true)
     </script>
 </body>
 </html>

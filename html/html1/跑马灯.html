@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跑马灯</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        .box{
+            width: 500px;           
+            margin: 0 auto;
+            margin-top: 50px;
+            overflow: hidden;
+            
+        }
+        .list{
+            display: flex;
+            flex-wrap:nowrap;
+             position: relative;
+             left: 0;        
+            
+        }
+        img{
+            width: 100px;
+            height: 200px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box">
+         <ul class="list" id="list" style="left: 0;" >
+             <li><img src="img1\微信图片_20211010215451.jpg" alt=""></li>
+             <li><img src="img1\微信图片_20211010215456.jpg" alt=""></li>
+             <li><img src="img1\微信图片_20211010215502.jpg" alt=""></li>
+             <li><img src="img1\微信图片_20211118194339.jpg" alt=""></li>
+             <li><img src="img1\微信图片_20211010215451.jpg" alt=""></li>
+             <li><img src="img1\微信图片_20211010215451.jpg" alt=""></li>
+             <li><img src="img1\微信图片_20211010215502.jpg" alt=""></li>
+             <li><img src="img1\微信图片_20211118194339.jpg" alt=""></li>
+             <li><img src="img1\微信图片_20211010215456.jpg" alt=""></li>
+         </ul>
+    </div>
+    <script>
+       let list = document.getElementById("list");
+       let box = document.getElementById("box")
+       function move(){
+            let curLeft = parseFloat(list.style.left);
+            console.log(curLeft);
+            curLeft-=5;
+            if(curLeft<=-400){
+                  curLeft = 0
+            } 
+            list.style.left = curLeft + "px"
+       }
+  
+       setInterval(move,50)
+
+   console.log(window.getComputedStyle(box,[width]))
+
+    </script>
+</body>
+</html>

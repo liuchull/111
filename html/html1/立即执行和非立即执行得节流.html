@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            margin: 800px 0 0 0;
+            border: 1px solid #444;
+            background: red;
+            line-height: 200px;
+            text-align: center;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+      <div class="box" id="box">
+            来点我啊
+      </div>
+      <script>
+     (function(){
+       let box = document.getElementById("box");
+       let num = 0;
+       let fn = function(){
+           console.log(++num);
+       }
+    //    function throttle(fn,time){
+    //         let  previous = 0;
+    //         return function(){
+    //             let now = Date.now();
+    //             if(now - previous >= time){
+    //                fn.call(this)
+    //                previous = now;
+    //             }
+    //         }
+    //    }
+
+
+
+
+        function throttle(fn,time){
+             let timer;
+             return function(){
+                 if(!timer){
+                  timer = setTimeout(function(){
+                        timer = null;
+                      fn.call(this)
+                  },time)  
+                 }
+             }   
+        }
+
+        window.onscroll = throttle(fn,1000)
+
+      
+
+
+
+
+
+
+
+     })()
+
+
+
+
+
+      </script>
+</body>
+</html>

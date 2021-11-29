@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>固定步长的动画</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            border-radius: 50%;
+            background: orangered;
+            position: absolute;
+            left: 0;
+        }
+        button{
+            position: absolute;
+            width: 100px;
+            top: 300px;
+        }
+        button:nth-child(1){
+            left: 0;
+        }
+        button:nth-child(2){
+            left: 150px;
+        }
+    </style>
+</head>
+<body>
+     <div>
+         <div class="box" id="box"  style="left: 0;">点我啊</div>
+         <button id="left">向左</button>
+         <button id="right">向右</button>
+     </div>
+     <script>
+       let box = document.getElementById("box");
+       let left = document.getElementById("left");
+       let right = document.getElementById("right");
+       let maxLeft = document.documentElement.clientWidth - box.offsetWidth;
+       let timer;
+       let step = 5;
+       right.onclick = function(){
+           clearInterval(timer)
+            timer = setInterval(function(){
+            let curLeft = parseFloat(getComputedStyle(box).left);
+          
+            curLeft +=step; 
+            console.log(curLeft)
+            if(curLeft>=maxLeft){
+              clearTimeout(timer)
+              return
+            } 
+            box.style.left = curLeft + "px";
+            
+           },17)
+       }
+
+       left.onclick = function(){
+        clearInterval(timer)
+            timer = setInterval(function(){
+            let curLeft = parseFloat(getComputedStyle(box).left);
+          
+            curLeft -=step; 
+            console.log(curLeft)
+            if(curLeft<=0){
+              clearTimeout(timer)
+              return
+            } 
+            box.style.left = curLeft + "px";
+            
+           },17)
+       }
+
+
+
+
+
+     </script>
+</body>
+</html>

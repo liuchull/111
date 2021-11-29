@@ -60,10 +60,16 @@
             } 
             list.style.left = curLeft + "px"
        }
+       list.onmouseenter = function(){
+           clearInterval(timer)
+       };
+       list.onmouseleave = function(){
+        timer =   setInterval(move,50)
+       }
   
-       setInterval(move,50)
+         timer =   setInterval(move,50)
 
-   console.log(window.getComputedStyle(box,[width]))
+   
 
     </script>
 </body>

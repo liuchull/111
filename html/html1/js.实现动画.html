@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js实现动画</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 200px;
+            height:200px;
+            line-height: 200px;
+            border-radius: 50%;
+            background: orangered;
+            text-align: center;
+            font-size: 30px;
+            position: absolute;
+            left: 0;
+        }
+        button{
+            position: absolute;
+            top: 300px;
+            width: 100px;
+        }
+
+        button:nth-child(1){
+          
+            left: 0;
+         
+        }
+        button:nth-child(2){
+            left: 300px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="box" id="box">点我啊</div>
+        <button class="left" id="left">向左</button>
+        <button class="right" id="right">向右</button>
+    </div>
+    <script src="js/jq"></script>
+    <script>
+     let box = document.getElementById("box");
+     let minLeft = 0;
+     let maxLeft = document.documentElement.clientWidth - box.offsetWidth;
+     
+     $("#right").click(
+         function(){
+             
+            $("#box").stop(true).animate({left:maxLeft},3000,"linear")
+         }
+     )
+     $("#left").click(
+         function(){
+            $("#box").stop(true).animate({left:minLeft},3000,"linear")
+         }
+     )
+
+
+
+
+    </script>
+</body>
+</html>

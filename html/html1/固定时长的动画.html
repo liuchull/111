@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>固定时长的动画</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            font-size: 30px;
+            border-radius: 50%;
+            background: orangered;
+            position: absolute;
+            left: 0;
+        }
+        button{
+            width: 100px;
+            position: absolute;
+            top: 300px;
+        }
+        button:nth-child(1){
+            left: 0;
+        }
+        button:nth-child(2){
+            left: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+          <div class="box" id="box">
+              点我啊
+          </div>
+          <button class="left" id="left">向左</button>
+          <button class="right" id="right">向右</button>
+          <script src="js/jq"> </script>
+          <script>
+              let maxLeft = parseFloat(document.documentElement.clientWidth - $("#box").outerWidth());
+              let box = document.getElementById("box");
+              let left = document.getElementById("left");
+              let right = document.getElementById("right");
+              let step = 5;
+              let timer;
+              left.onclick = function(){
+                  let curLeft  =parseFloat( getComputedStyle(box).left);
+                  clearInterval(timer)
+                 timer = setInterval(function(){
+                      curLeft +=step;
+                      if(curLeft>=maxLeft){
+                       clearInterval(timer);
+                        box.style.left = curLeft + "px";
+                        return
+                      }
+                      box.style.left = curLeft + "px";
+                 },17)
+              }
+              right.onclick = function(){
+                  clearInterval(timer);
+                  let curLeft  =parseFloat( getComputedStyle(box).left);
+                  timer = setInterval(function(){
+                      curLeft -=step;
+                      if(curLeft<=0){
+                       clearInterval(timer);
+                        box.style.left = curLeft + "px";
+                        return
+                      }
+                      box.style.left = curLeft + "px";
+                 },17)
+              }
+        //       console.log(maxLeft)
+                      
+        //    $("#right").click(function(){
+        //        $("#box").stop(true).animate({left:maxLeft},3000,"linear")
+        //    })
+        //    $("#left").click(function(){
+        //        $("#box").stop(true).animate({left:0},3000,"linear")
+        //    })
+
+
+          </script>
+    </div>
+</body>
+</html>

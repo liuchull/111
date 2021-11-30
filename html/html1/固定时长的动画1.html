@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>固定时长的动画</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            font-size: 30px;
+            border-radius: 50%;
+            background: orangered;
+            position: absolute;
+            left: 0;
+        }
+        button{
+            width: 100px;
+            position: absolute;
+            top: 300px;
+        }
+        button:nth-child(1){
+            left: 0;
+        }
+        button:nth-child(2){
+            left: 150px;
+        }
+    </style>
+</head>
+<body>
+     <div>
+        <div class="box" id="box">
+            点我啊
+        </div>
+        <button class="left" id="left">向左</button>
+        <button class="right" id="right">向右</button>
+     </div>
+     <script>
+        (function(){
+         let box = document.getElementById("box");
+         let right = document.getElementById("right");
+         let left = document.getElementById("left"); 
+         let duration = 3000;
+         let maxLeft = parseFloat(document.documentElement.clientWidth - box.offsetWidth);
+         let begin = parseFloat(getComputedStyle(box).left);
+         let change = maxLeft - begin;
+         let  time = 0;
+         function linear(t,d,c,b){
+             return (t/d)*c + b
+         }
+          right.onclick = function(){
+              let timer = setInterval(function(){
+                 time+=17;
+                 console.log(time);
+                 if(time>=duration){
+                    clearInterval(timer)
+                    box.style.left = maxLeft + "px";
+                 }
+                 let curL  = linear(time,duration,change,begin);
+                 box.style.left = curL+ "px";
+              },17)
+          };
+          left.onclick = function(){
+              let timer = setInterval(function(){
+                 time+=17;
+                 console.log(time);
+                 if(time>=duration){
+                    clearInterval(timer)
+                    box.style.left =0;
+                 }
+                 let curL  = linear(time,duration,change,begin);
+                 box.style.left = curL+ "px";
+              },17)
+          }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        })()
+
+
+
+
+
+     </script>
+</body>
+</html>

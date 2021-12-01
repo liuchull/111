@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多方向运动的动画</title>
+    <style>
+        *{
+          margin: 0;
+          padding: 0;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            border-radius: 50%;
+            background: orangered;
+            text-align: center;
+            font-size: 30px;
+            position: absolute;
+            left: 0;
+        }
+        button{
+            width: 100px;
+            position: absolute;
+            top: 300px;
+        }
+        button:nth-child(1){
+            left: 0;
+        }
+        button:nth-child(2){
+            left: 300px;
+        }
+    </style>
+</head>
+<body>
+     <div>
+         <div class="box" id="box">
+               点我啊
+         </div>
+         <button class="left" id="left">向右</button>
+         <button class="right" id="right">向左</button>
+     </div>
+     <script>
+          (function(){
+              let box = document.getElementById("box");
+              let left = document.getElementById("left");
+              let right = document.getElementById("right");
+              let duration = 3000;
+              let begin = {};
+              let change = {};
+              function linear(t,d,c,b){
+                  return (t/d)*c+b
+              }
+              function move(curEle,target,duration,callBack){
+                  let time = 0;
+                  for(let key in target){
+                      begin[key] = parseFloat(getComputedStyle(curEle)[key]);
+                      change[key] = target[key] - begin[key];
+                  }
+                  let timer = setInterval(function(){
+                     time+=20;
+                      for(let key in change){
+                        curEle.style[key] = linear(time,duration,change[key],begin[key])+"px ";
+                      }
+                      if(time>duration){
+                            clearInterval(timer);
+                            callBack?callBack():null;
+                      }
+                  },17)
+              }  
+              left.onclick = function(){
+                  move(box,{left:800,width:500,height:600},3000,function(){
+                      box.style.background = "blue"
+                  })
+              }
+
+
+
+
+
+
+
+
+
+          })()
+     </script>
+</body>
+</html>

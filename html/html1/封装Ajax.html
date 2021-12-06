@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+  function ajax(params){
+     let {url,type="get",async = "true",success=()=>{
+              }} = params;
+      let xhr = new XMLHttpRequest;
+      xhr.open(type,url,async);
+      xhr.onreadystatechange = function(){
+          if(xhr.readyState == 4&&/^2\d{2}$/.test(xhr.status)){
+               success(JSON.parse(xhr.response))
+          }
+      }
+      xhr.send()
+  }
+
+   ajax({
+       url:"./data/data.json",
+       success:(res)=>{
+           console.log(res);
+           
+       }
+   })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

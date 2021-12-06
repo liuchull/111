@@ -87,15 +87,16 @@
      }
     follow()
     
-    debounce(right.onclick = function(){
-        moveItems();
-    },1000)
+    
+        right.onclick = debounce( function(){
+            moveItems();},200)
+ 
     left.onclick = function(){
         step-=2;
        
         if(step===-2){
          list.style.left = (data.length)*-800+"px"
-         step=2
+         step=3
         }
         moveItems() 
     }

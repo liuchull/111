@@ -43,7 +43,7 @@
     function moveItems(){
         step++
         console.log(step)
-        if(step>=4){
+        if(step>=data.length+1){
             inner.style.left = 0;
             step = 1
         }
@@ -95,8 +95,8 @@
         step-=2;
        
         if(step===-2){
-         list.style.left = (data.length)*-800+"px"
-         step=3
+         inner.style.left = (data.length)*-800+"px"
+         step=1
         }
         moveItems() 
     }

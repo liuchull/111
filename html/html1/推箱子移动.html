@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>推箱子移动</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            /* border: 1px solid #444; */
+            background: red;
+            position: absolute;
+            left: 50%;
+             top: 50%; 
+            /* transform: translate(-50%,-50%); */
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box">
+       
+    </div>
+
+    <script>
+      let box = document.getElementById("box");
+    //   function fn(){
+
+    //   }
+      document.body.onkeydown = function(e){
+          let a = e.keyCode;
+          console.log(a)
+          let css = getComputedStyle(box);
+          let l = parseFloat(css.left);
+          
+          let T = parseFloat(css.top);
+          let maxL = parseFloat(document.documentElement.clientWidth-box.offsetWidth);
+          let maxT = parseFloat(document.documentElement.clientHeight - box.offsetHeight);
+          switch (a) {
+              case 38:
+                  T-=10;
+                  if(T<=0){
+                     T=0
+                  }
+                   
+            
+                  break;
+                  case 37:
+                     if(l<0){
+                        l=0
+                     } 
+                   l-=10;  
+                  break;
+                  case 40:
+                      if(T>maxT){
+                         T = maxT
+                      }
+                   T+=10;
+                  break;
+                  case 39:
+                      if(l>maxL){
+                         l=maxL
+                      }
+                   l+=10;    
+                  break;
+          
+              default:
+                  
+          }
+            box.style.left = l+"px";
+            box.style.top = T + "px";
+      }
+   
+
+    </script>
+</body>
+</html>

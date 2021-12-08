@@ -21,6 +21,7 @@
             height: 300px;
             margin: 100px auto;
             position: relative;
+            cursor: pointer;
         }
         .inner{
             width: 600px;
@@ -78,7 +79,7 @@
 </head>
 <body>
     <div class="outer" id="outer">
-           <div class="inner">
+           <div class="inner" id="inner">
               <!-- <img src="img1/微信图片_20211118194339.jpg" alt="">
               <img src="img1/微信图片_20211118194345.jpg" alt="">
               <img src="img1/微信图片_20211118194352.jpg" alt="">
@@ -92,21 +93,24 @@
          </ul>
          <a href="javascript:;" id="left"><</a>
          <a href="javascript:;" id="right">></a>
+         
     </div>
       <script src="js/jq"></script>
        <script>
      (function(){
       let timer;
       let step = 0;
+      let data = null;
       function send(){
           console.log(22222)
       $.ajax({
           url:"../轮播图/data.json",
           type:"get",
           async:false,
-          success:function(data){
-            rander(data);
-            timer = setInterval(autoMove,1000)
+          success:function(res){
+              data = res;
+           
+          
           }
       })
     }
@@ -118,25 +122,49 @@
              imgs+=` <img src="${item.img}" alt="">`;
              lis+=` <li></li>`
           })
-          $("inner").html(imgs);
-          $("list").html(lis)
+          $("#inner").html(imgs);
+          $("#list").html(lis)
       }
+      rander(data)
       
+      console.log(data)
      function autoMove(){
            step++;
            step==3?step=0:step;
            $("img").eq(step).fadeIn().siblings().fadeOut()
+           changeFoucs()
      }
 
-
+       timer = setInterval(autoMove,1000)
 
    
+     function changeFoucs(){
+         $("#list li").eq(step).addClass("select").siblings().removeClass("select");
+     }
+
+     changeFoucs()
+     $("#outer").hover(function(){
+         clearInterval(timer)
+     },function(){ timer = setInterval(autoMove,1000)})
 
 
+     $("#list li").hover(function(){
+         let index = $(this).index();
+         step = index-1;
+         autoMove();
+     })
+     $("#right").click(function(){
+         autoMove()
+     });
+     
 
-
-
-
+     $("#left").click(function(){
+         step-=2;
+         if(step==-2){
+             step = 1
+         };
+         autoMove()
+     })
 
 
 

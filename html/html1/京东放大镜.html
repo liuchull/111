@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东放大镜</title>
+     <style>
+         *{
+             margin: 0;
+             padding: 0;
+         }
+         .box,.bigBox{
+             width: 300px;
+             height: 300px;
+             position: relative;
+             border: 1px solid red;
+             cursor: move;
+         }
+         .box img{
+             width: 100%;
+             height: 100%;
+             display: block;
+         }
+         .bigBox{
+             left: 400px;
+             top: -300px;
+             overflow: hidden;
+             display: none;
+         }
+         .bigBox img{
+             width: 600px;
+             height: 600px;
+             position: absolute;
+             left: 0;
+             top: 0;
+         }
+         #mark{
+             width:50px;
+             height:50px;
+             background: royalblue;
+             position: absolute;
+             left: 0;
+             top: 0;
+         }
+     </style>
+</head>
+<body>
+    <div class="box" id="box">
+         <img src="./img1/大头裸照.jpg" alt="">
+         <!-- <div class="mark" id="mark"></div> -->
+    </div>
+    <div class="bigBox" id="bigBox">
+        <img id="img" src="./img1/大头裸照.jpg" alt="">
+    </div>
+    <script>
+        let box = document.getElementById("box");
+        let bigBox = document.getElementById("bigBox");
+        let mark=null;
+        let img = document.getElementById("img");
+        box.onmouseenter = function(){
+            mark  =     document.createElement("div");
+            mark.id = "mark";
+            box.appendChild(mark);
+          
+            bigBox.style.display = "block";
+            
+        }  
+        
+        box.onmousemove = function(e){
+        let maxL = parseFloat(getComputedStyle(box).width) - parseFloat(getComputedStyle(mark).width);
+        let maxT = parseFloat(getComputedStyle(box).height) - parseFloat(getComputedStyle(mark).height);
+        let curL = e.clientX - box.offsetLeft - parseFloat(getComputedStyle(mark).width)/2;
+         curL<=0?curL=0:(curL>maxL?curL=maxL:curL);        
+         let curT = e.clientY - box.offsetTop  - parseFloat(getComputedStyle(mark).height)/2;
+         curT<=0?curT=0:(curT>maxT?curT=maxT:curT);
+         mark.style.left = curL+"px";
+         mark.style.top = curT +"px";      
+         
+         img.style.left = -2*curL + "px";
+         img.style.top = -2*curT + "px";
+
+
+        }
+
+
+
+
+         box.onmouseleave = function(){
+             bigBox.style.display = "none";
+             box.removeChild(mark);
+         }
+
+
+
+    </script>
+</body>
+</html>

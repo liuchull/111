@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 300px;
+            height: 300px;
+            background: orangered;
+            position: relative;
+            margin: 0 auto;
+            margin-top: 50px;
+            cursor: move;
+
+        }
+        .inner{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+             background: paleturquoise;
+             display: none; 
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="outer">
+           <div class="inner" id="inner">
+                           
+           </div>
+    </div>
+    <script>
+      let box = document.getElementById("outer");
+      let inner = document.getElementById("inner");
+       box.onmouseenter = function(){
+           inner.style.display = "block"
+       };
+       box.onmousemove = function(e){
+         let maxL =  parseFloat(getComputedStyle(box).width)-parseFloat(getComputedStyle(inner).width);
+         let maxT =  parseFloat(getComputedStyle(box).height)-parseFloat(getComputedStyle(inner).height);
+        
+         let curL = e.clientX - box.offsetLeft-parseFloat(getComputedStyle(inner).width)/2;
+         curL<=0?curL=0:(curL>=maxL?curL=maxL:curL);
+         
+         let curT = e.clientY - box.offsetTop-parseFloat(getComputedStyle(inner).height)/2; 
+         curT<=0?curT=0:(curT>=maxT?curT=maxT:curT);       
+         inner.style.left = curL+"px";
+         inner.style.top = curT+"px";
+       }
+
+       
+
+
+    </script>
+</body>
+</html>

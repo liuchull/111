@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖拽效果</title>
+    <style>
+   *{
+       margin: 0;
+       padding: 0;
+   }
+   .outer{
+       width: 200px;
+       height: 300px;
+       background: lavender;
+       position: absolute;
+       left: 50%;
+       transform: translate(-50%,0);
+   }
+   p{
+       height: 30px;
+       line-height: 30px;
+       text-align: center;
+       color: white;
+       background: violet;
+       cursor: move;
+       user-select: none;
+   }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="outer" id="outer">
+      
+               <p id="title">盛大登场</p>
+          
+    </div>
+    <script>
+   (function(){
+   let outer = document.getElementById("outer");
+   let title = document.getElementById("title");
+   let oldLeft = null;
+   let oldTop = null;
+    title.onmousedown = function(e){
+         oldLeft = e.clientX ;
+         oldTop = e.clientY ;
+          this.l  =   parseFloat(getComputedStyle(outer).left);
+          this.T = parseFloat(getComputedStyle(outer).top)
+         
+        document.onmousemove = move.bind(this);
+    }
+    function move(e){
+        let curL = e.clientX - oldLeft + this.l;
+        let curT = e.clientY - oldTop + this.T;
+        
+        outer.style.left = curL +"px";
+        outer.style.top = curT + "px";
+       
+    }
+
+    title.onmouseup = function(){
+        document.onmousemove = null;
+    }
+
+
+
+
+
+
+
+
+
+
+
+   })()
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

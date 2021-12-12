@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前两周知识复习</title>
+</head>
+<body>
+    <script>
+    //     function sum(num){
+    //         if(num>5){
+    //            return 0
+    //         }
+    //     return num + sum(num++)
+    // }
+    // let res = sum(1);
+    // console.log(res)
+
+    // let ary = [100,200,300,400,500];
+    // let res =  ary.filter((item,index)=>{
+    //       console.log(item)
+    //       return item>100
+    // })
+    // let res = ary.some((item,index)=>{
+    //   return item>700
+    // })
+    // let res = ary.every((item,index)=>{
+    
+    //       return item>0
+    // }) 
+//     let res = ary.find((item,index)=>{
+//         return  item>900
+//     })
+//    console.log(res)
+    //  function  A(){
+    //      this.x = 100
+    //  }    
+    //  function B(){
+    //      this.y = 200;
+    //      A.call(this);
+    //  }
+    //  let f1 = new B();
+    //  console.log(f1)
+    //    function  A(){
+
+    //        this.x = 100;
+    //    }
+    //    A.prototype.getX = function(){
+    //        return  m = 200;
+    //    }
+    //    function B(){
+    //       this.y = 200;
+    //    }
+    //    B.prototype.getY = function(){
+    //        let y = 300;
+    //    }
+    //    B.prototype = new A;
+    //    let f1 = new B;
+    //    console.log(f1)
+
+      class A{
+          constructor(){
+              this.x = 200
+          }
+          getx(){
+
+          }
+      }
+
+
+      class B extends A{
+          constructor(){
+              super();
+              this.y = 200
+          }
+          getY(){
+
+          }
+      }
+      let f1 = new B ;
+      console.log(f1)
+    </script>
+</body>
+</html>
